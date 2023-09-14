@@ -1,4 +1,12 @@
 # youchat-py
+[![yaroslav4167 - youchat-py](https://img.shields.io/static/v1?label=yaroslav4167&message=youchat-py&color=white&logo=github)](https://github.com/yaroslav4167/youchat-py "Go to GitHub repo")
+[![stars - youchat-py](https://img.shields.io/github/stars/yaroslav4167/youchat-py?style=social)](https://github.com/yaroslav4167/youchat-py)
+[![forks - youchat-py](https://img.shields.io/github/forks/yaroslav4167/youchat-py?style=social)](https://github.com/yaroslav4167/youchat-py)
+
+[![GitHub release](https://img.shields.io/github/release/yaroslav4167/youchat-py?include_prereleases=&sort=semver&color=white)](https://github.com/yaroslav4167/youchat-py/releases/)
+[![License](https://img.shields.io/badge/License-BSD--2--Clause_license-white)](https://github.com/yaroslav4167/youchat-py/blob/main/LICENSE)
+[![issues - youchat-py](https://img.shields.io/github/issues/yaroslav4167/youchat-py)](https://github.com/yaroslav4167/youchat-py/issues)
+ 
  Simple communication with YouChat in python.
 
 ## Installation
@@ -18,16 +26,13 @@ options:
 ```
 ### Example 1
 Use in CLI mode
-**Command:**
+```
 > python youchat.py "Hello!"
+Returns: `'{"generated_text": "Hello! How can I assist you today?"}'`
 
-**Returns:** `'{"generated_text": "Hello! How can I assist you today?"}'`
-
-**Command:**
 > python youchat.py -out_type string "How are you?"
-
-**Returns:** `'As an AI language model, I don't have feelings in the same way humans ...'`
-
+Returns: `'As an AI language model, I don't have feelings in the same way humans ...'`
+```
 ### Example 2
 Use in module mode
 test_unit.py:

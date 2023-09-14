@@ -26,16 +26,13 @@ options:
 ```
 ### Example 1
 Use in CLI mode
-**Command:**
+```
 > python youchat.py "Hello!"
+Returns: `'{"generated_text": "Hello! How can I assist you today?"}'`
 
-**Returns:** `'{"generated_text": "Hello! How can I assist you today?"}'`
-
-**Command:**
 > python youchat.py -out_type string "How are you?"
-
-**Returns:** `'As an AI language model, I don't have feelings in the same way humans ...'`
-
+Returns: `'As an AI language model, I don't have feelings in the same way humans ...'`
+```
 ### Example 2
 Use in module mode
 test_unit.py:

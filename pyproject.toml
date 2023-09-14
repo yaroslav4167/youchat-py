@@ -17,7 +17,7 @@ name = "youchat-py"  # Required
 #
 # For a discussion on single-sourcing the version, see
 # https://packaging.python.org/guides/single-sourcing-package-version/
-version = "0.2.1"  # Required
+version = "0.2.2"  # Required
 
 # This is a one-line description or tagline of what your project does. This
 # corresponds to the "Summary" metadata field:
@@ -137,8 +137,8 @@ test = ["coverage"]
 
 # The following would provide a command line executable called `sample`
 # which executes the function `main` from this package when invoked.
-#[project.scripts]  # Optional
-#sample = "youchat"
+[project.scripts]  # Optional
+youchat = "youchat:main_cli"
 
 # This is configuration specific to the `setuptools` build backend.
 # If you are using a different build backend, you will need to change this.

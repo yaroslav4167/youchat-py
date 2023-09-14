@@ -37,10 +37,13 @@ def you_message(text: str, out_type: str = 'json'):
             str_res = result['error'] if ('error' in result) else result['generated_text']
             return str_res
 
-if __name__=='__main__':     
+def main_cli():
     parser = argparse.ArgumentParser()
     parser.add_argument('MESSAGE', help="Message to YouChat")
     parser.add_argument('-out_type', '-ot', help="Output type", default="json") 
     args = parser.parse_args()
     text = args.MESSAGE
     print(you_message(text, args.out_type))
+
+if __name__=='__main__':     
+    main_cli()

@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "youchat-py"
 version = "0.1.0"
-description = ""
+description = "Simple communication with YouChat in python."
 readme = "README.md"
 packages = [{include = "youchat"}]
 

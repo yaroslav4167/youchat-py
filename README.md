@@ -10,11 +10,11 @@
  Simple communication with YouChat in python.
 
 ## Installation
-> pip install -r requirements.txt
+> pip install youchat-py
 
 ## Usage
 ```
-usage: youchat.py [-h] [-out_type OUT_TYPE] MESSAGE
+usage: youchat [-h] [-out_type OUT_TYPE] MESSAGE
 
 positional arguments:
   MESSAGE               Message to YouChat
@@ -27,10 +27,10 @@ options:
 ### Example 1
 Use in CLI mode
 ```
-> python youchat.py "Hello!"
+> youchat "Hello!"
 Returns: `'{"generated_text": "Hello! How can I assist you today?"}'`
 
-> python youchat.py -out_type string "How are you?"
+> youchat -out_type string "How are you?"
 Returns: `'As an AI language model, I don't have feelings in the same way humans ...'`
 ```
 ### Example 2

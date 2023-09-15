@@ -14,15 +14,17 @@
 
 ## Usage
 ```
-usage: youchat [-h] [-out_type OUT_TYPE] MESSAGE
+usage: youchat [-h] [-out_type OUT_TYPE] [-timeout TIMEOUT] MESSAGE
 
 positional arguments:
   MESSAGE               Message to YouChat
 
-options:
+optional arguments:
   -h, --help            show this help message and exit
   -out_type OUT_TYPE, -ot OUT_TYPE
                         Output type
+  -timeout TIMEOUT, -t TIMEOUT
+                        Timeout to wait response
 ```
 ### Example 1
 Use in CLI mode

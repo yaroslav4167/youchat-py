@@ -5,13 +5,13 @@ import argparse
 import time
 
 
-def you_message(text: str, out_type: str = 'json'):
+def you_message(text: str, out_type: str = 'json', timeout: int = 20):
     """Function to send a message and get results from YouChat.com
 
     Args:
         text (str): text to send
         out_type (str): type of result (json, string). Defaults to 'json'.
-
+        timeout (int): timeout in seconds to wait for a result. Defaults to 20.
 
     Returns:
         str: response of the message
@@ -22,9 +22,9 @@ def you_message(text: str, out_type: str = 'json'):
     with SB(uc=True) as sb:
         sb.open(
             f"https://you.com/api/streamingSearch?q={qoted_text}&domain=youchat")
-        timeout = time.time() + 15  # Timeout - 15 sec
+        timeout_delta = time.time() + timeout 
         stream_available = False
-        while time.time() <= timeout:
+        while time.time() <= timeout_delta:
             try:
                 sb.assert_text("event: youChatIntent", timeout=0.1)
                 stream_available = True
@@ -67,9 +67,10 @@ def main_cli():
     parser = argparse.ArgumentParser()
     parser.add_argument('MESSAGE', help="Message to YouChat")
     parser.add_argument('-out_type', '-ot', help="Output type", default="json")
+    parser.add_argument('-timeout', '-t', help="Timeout to wait response", default=20, type=int)
     args = parser.parse_args()
     text = args.MESSAGE
-    print(you_message(text, args.out_type))
+    print(you_message(text, args.out_type, args.timeout))
 
 
 if __name__ == '__main__':

@@ -36,16 +36,16 @@ def you_message(text: str, out_type: str = 'json'):
                 if sb.assert_element('iframe'):
                     sb.switch_to_frame("iframe")
                     sb.find_element(".ctp-checkbox-label", timeout=0.1).click()
+                    sb.switch_to_default_content()
                     # sb.save_screenshot('sel2.png') # Debug
             except Exception:
                 result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
 
             if stream_available:
                 result.pop('error')
-                sb.switch_to_default_content()
                 data = sb.get_text("body pre")
                 break
-            sb.switch_to_default_content()
+            
 
         res_message = ""
         for line in data.split("\n"):

@@ -41,6 +41,9 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
             except Exception:
                 result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
 
+            if time.time() > timeout_delta:
+                result['error'] = 'Timeout while getting data from Selenium! Try again later.'
+            
             if stream_available:
                 result.pop('error')
                 data = sb.get_text("body pre")

@@ -27,12 +27,18 @@ options:
 ### Example 1
 Use in CLI mode
 ```
-> youchat "Hello!"
-Returns: `'{"generated_text": "Hello! How can I assist you today?"}'`
-
-> youchat -out_type string "How are you?"
-Returns: `'As an AI language model, I don't have feelings in the same way humans ...'`
+youchat hello!
 ```
+Returns: `{"generated_text": "Hello! How can I assist you today?"}`
+```
+youchat -out_type string "who are you"
+```
+Returns: `I am YouBot, a large language model developed by You.com. ...`
+
+> **Note**
+> on **zsh** - you must use single quotes `youchat 'who are you?'`
+
+
 ### Example 2
 Use in module mode
 test_unit.py:
@@ -41,7 +47,7 @@ from youchat import you_message
 
 print( you_message(text='Hello, World!', out_type="string") )
 ```
-**Returns:** `'"Hello, World!" is a common phrase used in ...'`
+**Returns:** `"Hello, World!" is a common phrase used in ...`
 
 
 ## Used library

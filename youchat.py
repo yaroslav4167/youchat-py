@@ -22,12 +22,15 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
     with SB(uc=True) as sb:
         sb.open(
             f"https://you.com/api/streamingSearch?q={qoted_text}&domain=youchat")
-        timeout_delta = time.time() + timeout 
+        timeout_delta = time.time() + timeout
         stream_available = False
         while time.time() <= timeout_delta:
             try:
                 sb.assert_text("event: youChatIntent", timeout=0.1)
-                stream_available = True
+                if 'error' in result:
+                    result.pop('error')
+                data = sb.get_text("body pre")
+                break
             except Exception:
                 pass
 
@@ -45,16 +48,10 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
                 sb.switch_to_default_content()
             except Exception:
                 pass
-                
+
             if time.time() > timeout_delta:
                 # sb.save_screenshot('sel-timeout.png') # Debug
                 result['error'] = 'Timeout while getting data from Selenium! Try again later.'
-            
-            if stream_available:
-                result.pop('error')
-                data = sb.get_text("body pre")
-                break
-            
 
         res_message = ""
         for line in data.split("\n"):
@@ -76,7 +73,8 @@ def main_cli():
     parser = argparse.ArgumentParser()
     parser.add_argument('MESSAGE', help="Message to YouChat")
     parser.add_argument('-out_type', '-ot', help="Output type", default="json")
-    parser.add_argument('-timeout', '-t', help="Timeout to wait response", default=20, type=int)
+    parser.add_argument(
+        '-timeout', '-t', help="Timeout to wait response", default=20, type=int)
     args = parser.parse_args()
     text = args.MESSAGE
     print(you_message(text, args.out_type, args.timeout))

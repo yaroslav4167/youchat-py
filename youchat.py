@@ -36,12 +36,14 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
                 if sb.assert_element('iframe'):
                     sb.switch_to_frame("iframe")
                     sb.find_element(".ctp-checkbox-label", timeout=0.1).click()
+                    sb.find_element("span.mark", timeout=0.1).click()
                     sb.switch_to_default_content()
                     # sb.save_screenshot('sel2.png') # Debug
             except Exception:
                 result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
 
             if time.time() > timeout_delta:
+                # sb.save_screenshot('sel-timeout.png') # Debug
                 result['error'] = 'Timeout while getting data from Selenium! Try again later.'
             
             if stream_available:

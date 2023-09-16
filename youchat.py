@@ -26,7 +26,7 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
         stream_available = False
         while time.time() <= timeout_delta:
             try:
-                sb.assert_text("event: youChatIntent", timeout=0.1)
+                sb.assert_text("event: youChatIntent", timeout=8.45)
                 if 'error' in result:
                     result.pop('error')
                 data = sb.get_text("body pre")
@@ -38,16 +38,13 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
             try:
                 if sb.assert_element('iframe'):
                     sb.switch_to_frame("iframe")
-                    sb.find_element(".ctp-checkbox-label", timeout=0.1).click()
+                    sb.find_element(".ctp-checkbox-label", timeout=1).click()
                     # sb.save_screenshot('sel2.png') # Debug
             except Exception:
                 result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
-
-            # Force exit from iframe
-            try:
+            finally:
+                # Force exit from iframe
                 sb.switch_to_default_content()
-            except Exception:
-                pass
 
             if time.time() > timeout_delta:
                 # sb.save_screenshot('sel-timeout.png') # Debug

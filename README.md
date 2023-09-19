@@ -19,10 +19,10 @@ usage: youchat [-h] [-out_type OUT_TYPE] [-timeout TIMEOUT] MESSAGE
 positional arguments:
   MESSAGE               Message to YouChat
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -out_type OUT_TYPE, -ot OUT_TYPE
-                        Output type
+                        Output type (json/string)
   -timeout TIMEOUT, -t TIMEOUT
                         Timeout to wait response
 ```

@@ -51,6 +51,8 @@ print( you_message(text='Hello, World!', out_type="string") )
 ```
 **Returns:** `"Hello, World!" is a common phrase used in ...`
 
+## Problems and solutions
+If you often cannot get youchat response - try to update seleniumbase library `pip install -U seleniumbase`
 
 ## Used library
 - seleniumbase

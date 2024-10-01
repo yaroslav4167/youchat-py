@@ -25,6 +25,12 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
         timeout_delta = time.time() + timeout
         stream_available = False
         while time.time() <= timeout_delta:
+            # START Try to easy solve captcha challenge
+            try:
+                sb.uc_gui_click_captcha()
+            except Exception:
+                result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
+
             try:
                 sb.assert_text("event: youChatIntent", timeout=8.45)
                 if 'error' in result:
@@ -33,12 +39,6 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
                 break
             except Exception:
                 pass
-
-            # START Try to easy solve captcha challenge
-            try:
-                sb.uc_gui_click_captcha()
-            except Exception:
-                result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
 
             if time.time() > timeout_delta:
                 # sb.save_screenshot('sel-timeout.png') # Debug

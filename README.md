@@ -11,7 +11,8 @@
 
 ## Installation
 > pip install youchat-py
-if you use CLI - don't forget to install xvfb.
+
+If you use CLI - don't forget to install xvfb.
 > apt install xvfb
 
 ## Usage

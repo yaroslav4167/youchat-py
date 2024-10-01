@@ -19,9 +19,9 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
     qoted_text = urllib.parse.quote_plus(text)
     result = {}
     data = ""
-    with SB(uc=True) as sb:
-        sb.open(
-            f"https://you.com/api/streamingSearch?q={qoted_text}&domain=youchat")
+    with SB(uc=True, xvfb=True) as sb:
+        sb.uc_open_with_reconnect(
+            f"https://you.com/api/streamingSearch?q={qoted_text}&domain=youchat", 4)
         timeout_delta = time.time() + timeout
         stream_available = False
         while time.time() <= timeout_delta:
@@ -36,14 +36,9 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
 
             # START Try to easy solve captcha challenge
             try:
-                if sb.assert_element('iframe'):
-                    sb.switch_to_frame("iframe")
-                    sb.find_element(".cb-lb", timeout=1).click()
+                sb.uc_gui_click_captcha()
             except Exception:
                 result['error'] = 'Selenium was detected! Try again later. Captcha not solved automaticly.'
-            finally:
-                # Force exit from iframe
-                sb.switch_to_default_content()
 
             if time.time() > timeout_delta:
                 # sb.save_screenshot('sel-timeout.png') # Debug

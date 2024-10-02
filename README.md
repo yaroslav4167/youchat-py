@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/License-BSD--2--Clause_license-white)](https://github.com/yaroslav4167/youchat-py/blob/main/LICENSE)
 [![issues - youchat-py](https://img.shields.io/github/issues/yaroslav4167/youchat-py)](https://github.com/yaroslav4167/youchat-py/issues)
  
- Simple communication with YouChat in python.
+ Simple communication with YouChat (GPT-4) in python and CLI.
 
 ## Installation
 > pip install youchat-py

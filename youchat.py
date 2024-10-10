@@ -64,7 +64,7 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
 def main_cli():
     parser = argparse.ArgumentParser()
     parser.add_argument('MESSAGE', help="Message to YouChat")
-    parser.add_argument('-out_type', '-ot', help="Output type (json/string)", default="json")
+    parser.add_argument('-out_type', '-ot', help="Output type (json/string)", default="string")
     parser.add_argument(
         '-timeout', '-t', help="Timeout to wait response", default=20, type=int)
     args = parser.parse_args()

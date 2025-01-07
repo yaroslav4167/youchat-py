@@ -1,5 +1,6 @@
 # Seleniumbase
 downloaded_files/
+saved_cookies/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

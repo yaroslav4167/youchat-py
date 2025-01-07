@@ -19,9 +19,17 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
     qoted_text = urllib.parse.quote_plus(text)
     result = {}
     data = ""
-    with SB(uc=True, xvfb=True) as sb:
-        sb.uc_open_with_reconnect(
-            f"https://you.com/api/streamingSearch?q={qoted_text}&domain=youchat", 4)
+    with SB(uc=True, xvfb=True, page_load_strategy="none") as sb:
+        dummy_url = "https://you.com/favicon/favicon.ico"
+        sb.open(dummy_url)
+
+        try:
+            sb.load_cookies(name="cookies.txt")
+        except Exception as e:
+            pass
+
+        sb.open(
+            f"https://you.com/api/streamingSearch?q={qoted_text}&domain=youchat")
         timeout_delta = time.time() + timeout
         stream_available = False
         while time.time() <= timeout_delta:
@@ -44,6 +52,8 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
                 # sb.save_screenshot('sel-timeout.png') # Debug
                 result['error'] = 'Timeout while getting data from Selenium! Try again later.'
             # END Try to easy solve captcha challenge
+
+        sb.save_cookies(name="cookies.txt")
 
         res_message = ""
         for line in data.split("\n"):

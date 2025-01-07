@@ -52,9 +52,12 @@ def you_message(text: str, out_type: str = 'json', timeout: int = 20):
                 # sb.save_screenshot('sel-timeout.png') # Debug
                 result['error'] = 'Timeout while getting data from Selenium! Try again later.'
             # END Try to easy solve captcha challenge
-
-        sb.save_cookies(name="cookies.txt")
-
+        
+        try:
+            sb.save_cookies(name="cookies.txt")
+        except Exception as e:
+            pass
+        
         res_message = ""
         for line in data.split("\n"):
             if line.startswith("data: {"):
